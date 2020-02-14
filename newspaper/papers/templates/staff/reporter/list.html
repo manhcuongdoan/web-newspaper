@@ -1,0 +1,54 @@
+{% extends 'staff/base.html' %}
+
+{% block navbar %}
+  {% with page=2 %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container pt-3">
+  <h3>Danh mục nhà báo</h3>
+  <div class="text-right mb-3">
+    <a href='{% url "reporter-create" %}' class="btn btn-primary">Thêm nhà báo</a>
+  </div>
+  {%if reporters %}
+  <table class="table table-bordered">
+    <tr>
+      <th style="width:5%" class="text-center">STT</th>
+      <th style="width:20%" class="text-center">Reporter_image</th>
+      <th style="width:25%" class="text-center">Tên</th>
+      <th style="width:40%" class="text-center">Thông tin cá nhân</th>
+      <th style="width:20%" class="text-center">Thao tác</th>
+    </tr>
+    {% for reporter in reporters %}
+    <tr>
+      <td class="text-center">{{ forloop.counter }}</td>
+      <td class="text-center"><img src="/{{reporter.file}}" alt="reporter_image" style="width: 60px; height: 60px;"></td>
+      <td class="text-center">{{ reporter.reporter_name}}</td>
+      <td class="text-center">{{ reporter.reporter_info }} </td>
+      <td class="text-center">
+        <a title="Chỉnh sửa" href='{% url "reporter-update" reporter.id %}'><i class="fas fa-edit"></i></a> &nbsp;
+        <a title="Xóa" style="color:red" href='#' onclick="confirmDelete(this)"
+          url='{% url "reporter-delete" reporter.id %}'>
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>Không có dữ liệu</p>
+  {% endif %}
+</div>
+
+<script>
+  function confirmDelete(a) {
+    var url = a.getAttribute('url');
+    if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+      location.href = url;
+    }
+  }
+</script>
+
+{% endblock %}

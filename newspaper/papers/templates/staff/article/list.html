@@ -1,0 +1,61 @@
+{% extends 'staff/base.html' %}
+
+{% block navbar %}
+  {% with page=0 %}
+    {{ block.super }}
+  {% endwith %}
+{% endblock %}
+
+{% block content %}
+<div class="container pt-3">
+  <h3>Danh mục bài baó</h3>
+  <div class="text-right mb-3">
+    <a href='{% url "article-create" %}' class="btn btn-primary">Thêm bài báo</a>
+  </div>
+  {%if article_all %}
+  <table class="table table-bordered">
+    <tr>
+        <th style="width:5%" class="text-center">STT</th>
+        <th style="width:10%" class="text-center">Image</th>
+        <th style="width:15%" class="text-center">Title</th>
+        <th style="width:15%" class="text-center">Summary</th>
+        <th style="width:15%" class="text-center">Category</th>
+        <th style="width:15%" class="text-center">Reporter</th>
+        <th style="width:15%" class="text-center">publish_date</th>
+        <th style="width:25%" class="text-center">Thao tác</th>
+      </tr>
+    {% for article in article_all %}
+    <tr>
+        <td class="text-center">{{ forloop.counter }}</td>
+        <td class="text-center"><img src="/{{article.file}}" alt="article_image" style="width: 60px; height: 60px;"></td>
+        <td class="text-center">
+            {{ article.title }}
+        </td>
+        <td class="text-center">{{ article.summary }}</td>
+        <td class="text-center">{{ article.category.category_name }}</td>
+        <td class="text-center">{{ article.reporter.reporter_name }}</td>
+        <td class="text-center">{{ article.publish_date }}</td>      
+        <td class="text-center">
+            <a title="Chỉnh sửa" href='{% url "article-update" article.id %}'><i class="fas fa-edit"></i></a> &nbsp;
+            <a title="Xóa" style="color:red" href='#' onclick="confirmDelete(this)" url='{% url "article-delete" article.id %}'>
+                <i class="fas fa-trash"></i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+  <p>No article are available </p>
+  {% endif %}
+</div>
+
+<script>
+  function confirmDelete(a) {
+    var url = a.getAttribute('url');
+    if (confirm('Bạn có chắc chắn muốn xóa không?')) {
+      location.href = url;
+    }
+  }    
+</script>
+
+{% endblock %}
