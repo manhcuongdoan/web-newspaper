@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor_uploader.fields import RichTextUploadingField
 
 # Create your models here.
 class Category (models.Model):
@@ -10,7 +11,7 @@ class Category (models.Model):
 class Reporter (models.Model):
     reporter_name = models.CharField(max_length=30)
     reporter_info = models.TextField()
-    file = models.ImageField(upload_to='static/images', verbose_name='Image Reporter') 
+    file = models.ImageField(upload_to='uploads/', verbose_name='Image Reporter') 
     def __str__(self):
         return self.reporter_name
 class Article (models.Model): 
@@ -19,8 +20,8 @@ class Article (models.Model):
     summary = models.CharField(max_length=100)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     reporter = models.ForeignKey(Reporter, on_delete=models.CASCADE)
-    page_content = models.TextField()
-    file = models.ImageField(upload_to='static/images', verbose_name='Image article')  
+    page_content = RichTextUploadingField(blank=True, null=True)
+    file = models.ImageField(upload_to='uploads/', verbose_name='Image article')  
     def __str__(self):
         return self.title
 

@@ -10,6 +10,7 @@
 <div class="container pt-3">
   <form method="POST" enctype="multipart/form-data" novalidate>
     {% csrf_token %}
+    {{ form.media }}
     <table class="table table-form">
       {{ form }}
     </table>

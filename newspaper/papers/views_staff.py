@@ -96,14 +96,13 @@ def listReporter(request):
 @login_required
 def createReporter(request):
     form = ReporterForm()
-
     if request.method == 'POST':
-        form = ReporterForm(request.POST)
+        form = ReporterForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('reporter-list')
-
     return render(request, 'staff/reporter/form.html', {'form': form})
+
 
 @login_required
 def updateReporter(request, id):
@@ -115,12 +114,8 @@ def updateReporter(request, id):
         if form.is_valid():
             form.save()
             return redirect('reporter-list')
-    return render(request, 'staff/article/form.html', {'form': form})
-
-
-
-            
     return render(request, 'staff/reporter/form.html', {'form': form})
+
 
 @login_required
 def deleteReporter(request, id):
