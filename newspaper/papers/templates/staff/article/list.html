@@ -27,7 +27,7 @@
     {% for article in article_all %}
     <tr>
         <td class="text-center">{{ forloop.counter }}</td>
-        <td class="text-center"><img src="/{{article.file}}" alt="article_image" style="width: 60px; height: 60px;"></td>
+        <td class="text-center"><img src="media/{{article.file}}" alt="article_image" style="width: 60px; height: 60px;"></td>
         <td class="text-center">
             {{ article.title }}
         </td>
