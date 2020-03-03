@@ -8,6 +8,10 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/signup', views.signup), 
 
+
+    # ================================= Account ============================================
+    path('accounts/profile', views_user.viewProfile),
+
     # ================================= User page =========================================
     path('', views_user.index, name='home'),
     path('article/<int:article_id>', views_user.viewArticle, name='view-article'),
