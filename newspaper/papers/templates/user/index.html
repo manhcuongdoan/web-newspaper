@@ -1,78 +1,35 @@
 {% extends 'user/base.html' %}
-{%block content %}
-<div class="container">
+{% block content %}
+<div class="container pt-3">
     {% if article_all %}
-    <div class="row">
-        <!-- main-column -->
-        <div class="col-lg-7">
-            <div class="rank1-stories">
-                <div class="story">
-                    <div class="story_thumb">
-                        <a href="article/{{ article_all.0.id }}">
-                            <img src="media/{{article_all.0.file}}" alt="article_image">
-                        </a>
-                    </div>
-                    <h4 class="story_heading">
-                        <a href="article/{{ article_all.0.id }}">
-                            {{ article_all.0.title }}
-                        </a>
-                    </h4>
-
-                </div>
-
-            </div>
-            <div class="rank2-stories">
-                
-                <div class="story">
-                    <div class="story_thumb">
-                        <a href="article/{{ article_all.0.id }}">
-                            <img src="media/{{article_all.0.file}}" alt="article_image">
-                        </a>
-                    </div>
-                    <h4 class="story_heading">
-                        <a href="article/{{ article_all.0.id }}">
-                            {{ article_all.0.title }}
-                        </a>
-                    </h4>
-                    
-                </div>
-                <div class="story">
-                    <div class="story_thumb">
-                        <a href="article/{{ article_all.0.id }}">
-                            <img src="media/{{article_all.0.file}}" alt="article_image">
-                        </a>
-                    </div>
-                    <h4 class="story_heading">
-                        <a href="article/{{ article_all.0.id }}">
-                            {{ article_all.0.title }}
-                        </a>
-                    </h4>
-                    
-                </div>
-                <div class="story">
-                    <div class="story_thumb">
-                        <a href="article/{{ article_all.0.id }}">
-                            <img src="media/{{article_all.0.file}}" alt="article_image">
-                        </a>
-                    </div>
-                    <h4 class="story_heading">
-                        <a href="article/{{ article_all.0.id }}">
-                            {{ article_all.0.title }}
-                        </a>
-                    </h4>
-                    
-                </div>
-                
-            </div>
-        </div>
-
-    </div>
+    <table class="table table-bordered">
+        <tr>
+          <th style="width:5%" class="text-center">STT</th>
+          <th style="width:15%" class="text-center">Image</th>
+          <th style="width:25%" class="text-center">Title</th>
+          <th style="width:15%" class="text-center">Summary</th>
+          <th style="width:15%" class="text-center">Category</th>
+          <th style="width:15%" class="text-center">Reporter</th>
+          <th style="width:25%" class="text-center">publish_date</th>
+        </tr>
+        {% for article in article_all %}
+        <tr>
+            <td class="text-center">{{ forloop.counter }}</td>
+            <td class="text-center"><img src="media/{{article.file}}" alt="article_image" style="width: 60px; height: 60px;"></td>
+            <td class="text-center">
+                <a href="article/{{ article.id }}" title="title">{{ article.title }} &nbsp;</a>
+            </td>
+            <td class="text-center">{{ article.summary }}</td>
+            <td class="text-center">{{ article.category.category_name }}</td>
+            <td class="text-center">{{ article.reporter.reporter_name }}</td>
+            <td class="text-center">{{ article.publish_date }}</td>
+        </tr>        
+        
+        {% endfor %}
+    </table>
     {% else %}
         <p>No article are available </p>
     {% endif %}
 
 </div>
-
-
-
 {% endblock %}
