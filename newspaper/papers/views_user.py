@@ -13,3 +13,6 @@ def viewArticle(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     return render(request, 'user/article_detail.html', {'article': article})
 
+def viewProfile(request):
+    user = request.user
+    return render(request, 'user/account_detail.html', {'user': user})
