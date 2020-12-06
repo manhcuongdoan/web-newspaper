@@ -1,12 +1,12 @@
-.label-title {
+/* .label-title {
     font-size: 18px;
     font-weight: bold;
-}
+} */
 
 /* a {
   color: red;
 } */
-a:hover {
+/* a:hover {
     text-decoration: none;
 }
 
@@ -37,9 +37,9 @@ a:hover {
   font-size: 1.2rem;
   line-height: 2rem;
   font-weight: 450;
-}
+} */
 
-.small-list .story_heading a {
+/* .small-list .story_heading a {
   display: block;
   width: 294px;
 }
@@ -51,10 +51,10 @@ a:hover {
 
 .story_heading a {
   display: block;
-}
+} */
 
 /*rank 1*/
-.rank1-stories .story {
+/* .rank1-stories .story {
   display: block;
   margin-top: 25px;
   margin-left: -15px;
@@ -67,11 +67,11 @@ a:hover {
   width: 610px;
   height: 342px;
 
-}
+} */
 
 
 /*rank 2 css*/
-.rank2-stories .story {
+/* .rank2-stories .story {
   display: inline-block;
   margin-left: -15px;
   margin-right: 24px;
@@ -83,13 +83,24 @@ a:hover {
   width: 193px;
   height: 128.34px;
 
-}
+} */
 
 
-.rank2-stories .story_heading {
+/* .rank2-stories .story_heading {
   font-size: 1.2rem;
   line-height: 1.0rem;
   font-weight: 600;
 
+} */
+
+
+.navbar {
+
+
 }
 
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5em;
+
+}

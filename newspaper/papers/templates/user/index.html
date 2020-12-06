@@ -1,35 +1,98 @@
 {% extends 'user/base.html' %}
 {% block content %}
-<div class="container pt-3">
-    {% if article_all %}
-    <table class="table table-bordered">
-        <tr>
-          <th style="width:5%" class="text-center">STT</th>
-          <th style="width:15%" class="text-center">Image</th>
-          <th style="width:25%" class="text-center">Title</th>
-          <th style="width:15%" class="text-center">Summary</th>
-          <th style="width:15%" class="text-center">Category</th>
-          <th style="width:15%" class="text-center">Reporter</th>
-          <th style="width:25%" class="text-center">publish_date</th>
-        </tr>
-        {% for article in article_all %}
-        <tr>
-            <td class="text-center">{{ forloop.counter }}</td>
-            <td class="text-center"><img src="media/{{article.file}}" alt="article_image" style="width: 60px; height: 60px;"></td>
-            <td class="text-center">
-                <a href="article/{{ article.id }}" title="title">{{ article.title }} &nbsp;</a>
-            </td>
-            <td class="text-center">{{ article.summary }}</td>
-            <td class="text-center">{{ article.category.category_name }}</td>
-            <td class="text-center">{{ article.reporter.reporter_name }}</td>
-            <td class="text-center">{{ article.publish_date }}</td>
-        </tr>        
-        
-        {% endfor %}
-    </table>
-    {% else %}
-        <p>No article are available </p>
-    {% endif %}
+<!--Spotlight article-->
 
-</div>
+    <section class="main-posts py-2">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="main-article-post shadow">
+                        <img class="img-fluid" src="media/{{article_all.first.file}}" alt="article-image">
+                        <div class="article-post-badges">
+                            <a href="">{{ article_all.first.category }}</a>
+                        </div>
+                        <div class="article-post-content">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2><a style="text-decoration: none; color: #212529" href="article/{{ article_all.first.id }}">{{ article_all.first.title }}</a></h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% for article in article_all %}
+                        <article class="post my-3">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <img src="media/{{article.file}}" class="img-fluid" alt="article">
+                                </div>
+                                <div class="col-sm-9">
+                                    <a style="text-decoration: none; color: #212529" href="article/{{ article.id }}"><b>{{ article.title }}</b></a>
+                                    <p>{{ article.summary }}</p>
+                                    <div class="badge">
+                                        <a href="">{{ article.category }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    {% endfor %}
+                </div>
+                <div class="col-lg-4">
+                    <div class="sub-article-post shadow pb-2">
+                        {% for article in article_all %}
+                            <div class="row mb-2">
+                                    <div class="col-sm-3">
+                                        <img class="img-fluid rounded" href="article/{{ article.id }}" src="media/{{article.file}}" alt="sub-article">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <a class="m-0" style="text-decoration: none; color: #212529" href="article/{{ article.id }}">{{ article.title }}</a>
+                                    </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <aside class="my-3">
+                        <div class="row text-center">
+                            <div class="col-sm-4">
+                                <a class="social-link py-4 w-100">
+                                    <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a class="social-link py-4 w-100">
+                                    <i class="fab fa-twitter" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4">
+                                <a class="social-link py-4 w-100">
+                                    <i class="fab fa-youtube" aria-hidden="true"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <h4 class="aside-heading mt-4">Tác giả chính</h4>
+                        <article class="row mb-3">
+                            <div class="col-sm-3">
+                                <img class="img-fluid rounded"  src="static/images/spacex_firstship.jpg" alt="Author">
+                            </div>
+                            <div class="col-sm-9">
+                                <h5 class="m-0">Đoàn Mạnh Cường</h5>
+                                <p class="m-0">Đoàn Mạnh Cường phóng viên</p>
+                            </div>
+                        </article>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!--Main article -->
+  <!-- <section class="posts py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+               
+            </div>
+            
+        </div>
+    </div>
+  </section> -->
+
 {% endblock %}

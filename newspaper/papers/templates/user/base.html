@@ -1,51 +1,91 @@
-<meta charset="UTF-8">
-<link rel="stylesheet" href="/static/css/bootstrap.css">
-<link rel="stylesheet" href="/static/css/main.css">
-<script src="/static/js/jquery-3.3.1.slim.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/vue.js"></script>
-<script src="/static/js/main.js"></script>
-<script src="https://kit.fontawesome.com/e2db74ebd5.js" crossorigin="anonymous"></script>
+<html>
+  <head>
+    <title>My news</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <script src="/static/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/vue.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="https://kit.fontawesome.com/e2db74ebd5.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <!-- Header Section-->    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Báo mới</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'home' %}">Các bài viết <span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
 
-
-<div class="bg-primary">
-  <div>
-    {% if user.is_authenticated %}
-    <nav class="navbar navbar-expand navbar-dark bg-primary p-0">
-      <ul class="navbar-nav ml-3">
-        <li class="nav-item {% if not page %} active {% endif %}">
-          <a class="nav-link" href="{% url 'home' %}">Các bài viết</a>
-        </li>
+          {% if user.is_authenticated %}
+          <ul class="navbar-nav ml-auto mr-3">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#">
+                <!-- <img class="rounded-circle" style="width:60px" src="/static/images/user.svg"> -->
+                <i class="fas fa-user-circle icon-4x"></i>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="accounts/profile">
+                  Thông tin tài khoản
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/accounts/logout">
+                  Đăng xuất
+                </a>
+              </div>
+            </li>
+          </ul> 
+          {% else %}
+          <nav class="navbar navbar-expand p-0">
+            <ul class="navbar-nav mr-3 ml-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
+              </li>
+            </ul>
+          </nav>
+          {% endif %}
+        </div> 
         
-      </ul>
-      <ul class="navbar-nav ml-auto mr-3">
-        <li class="nav-item dropdown no-arrow">
-          <a class="nav-link dropdown-toggle p-0" data-toggle="dropdown" href="#">
-            <img class="rounded-circle" style="width:60px" src="/static/images/user.svg">
-          </a>
-          <div class="dropdown-menu dropdown-menu-right">
-            <a class="dropdown-item" href="accounts/profile">
-              Thông tin tài khoản
-            </a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/accounts/logout">
-              Đăng xuất
-            </a>
-          </div>
-        </li>
-      </ul>      
+      </div>
     </nav>
-    {% else %}
-    <nav class="navbar navbar-expand navbar-dark bg-primary p-0">
-      <ul class="navbar-nav mr-3 ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'login' %}">Đăng nhập</a>
-        </li>
-      </ul>
-    </nav>
-    {% endif %}
-  </div>
-</div>
 
 {%block content %}
 {% endblock %}
+
+  <footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+              <h4><a class="footer-logo">Báo mới</a></h4>
+              <p>Đem tin tức đến mọi người</p>
+            </div>
+            <div class="col-md-6">
+              <h4>Useful links</h4>
+              <ul>
+                <li><a>Home</a></li>
+                <li><a>Chính sách</a></li>
+                <li>Liên hệ với chúng tôi</li>
+              </ul>
+            </div>
+        </div>
+        <div class="w-100 text-center credits">
+          <p>Make by <a>Doan Manh Cuong</a> &copy; 2020</p>
+        </div>
+    </div>
+
+  </footer>
+  </body>
+
+</html>

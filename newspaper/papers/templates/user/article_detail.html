@@ -1,5 +1,64 @@
 {% extends 'user/base.html' %}
 {% block content %}
-{{ article.page_content | safe }}
+
+<section class="main-posts py-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+               <h2>{{ article_detail.title}}</h2>
+               <div>
+                   {{ article_detail.page_content | safe}} 
+               </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sub-article-post shadow pb-2">
+                        {% for article in article_all %}
+                            <div class="row mb-2">
+                                    <div class="col-sm-3">
+                                        <img class="img-fluid rounded" href="/article/{{ article.id }}" src="/media/{{article.file}}" alt="sub-article">
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <a class="m-0" style="text-decoration: none; color: #212529" href="/article/{{ article.id }}">{{ article.title }}</a>
+                                    </div>
+                            </div>
+                        {% endfor %}
+                </div>
+                <aside class="my-3">
+                    <div class="row text-center">
+                        <div class="col-sm-4">
+                            <a class="social-link py-4 w-100">
+                                <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a class="social-link py-4 w-100">
+                                <i class="fab fa-twitter" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a class="social-link py-4 w-100">
+                                <i class="fab fa-youtube" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h4 class="aside-heading mt-4">Tác giả chính</h4>
+                    <article class="row mb-3">
+                        <div class="col-sm-3">
+                            <img class="img-fluid rounded"  src="/static/images/spacex_firstship.jpg" alt="Author">
+                        </div>
+                        <div class="col-sm-9">
+                            <h5 class="m-0">Đoàn Mạnh Cường</h5>
+                            <p class="m-0">Đoàn Mạnh Cường phóng viên</p>
+                        </div>
+                    </article>
+                </aside>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
 
 {% endblock %}

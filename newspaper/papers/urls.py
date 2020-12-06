@@ -1,5 +1,4 @@
 from django.urls import path, include
-
 from . import views_user, views_staff, views
 
 urlpatterns = [
@@ -39,8 +38,4 @@ urlpatterns = [
     path('staff/reporter_update/<int:id>', views_staff.updateReporter, name='reporter-update'),
     path('staff/reporter_delete/<int:id>', views_staff.deleteReporter, name='reporter-delete'),   
 
-
-
-
-    
 ]

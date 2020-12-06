@@ -15,9 +15,9 @@ class Reporter (models.Model):
     def __str__(self):
         return self.reporter_name
 class Article (models.Model): 
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     publish_date = models.DateTimeField('date published')
-    summary = models.CharField(max_length=100)
+    summary = models.CharField(max_length=150)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     reporter = models.ForeignKey(Reporter, on_delete=models.CASCADE)
     page_content = RichTextUploadingField(blank=True, null=True)

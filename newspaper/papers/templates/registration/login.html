@@ -1,39 +1,44 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/static/css/bootstrap.css">
-<link rel="stylesheet" href="/static/css/main.css">
+<link rel="stylesheet" href="/static/css/login.css">
 
-<style>
-  .login-form {
-    border: 1px solid #DDD;
-    max-width: 400px;
-    padding: 20px;
-    margin: 100 auto 0 auto;
-  }
-</style>
-
-<div class="login-form">
-  <h3>Đăng nhập</h3>
-  <br>
-  <form method="POST">{% csrf_token %}
-    <div class="form-group">
-      <label>Tên tài khoản</label>
-      <input name="username" type="text" class="form-control" />
-      {{ form.username.errors }}
-    </div>
-    <div class="form-group">
-      <label>Mật khẩu</label>
-      <input name="password" type="password" class="form-control" />
-      {{ form.password.errors }}
-    </div>
-
-    {{ form.non_field_errors  }}
-    
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
-    </div>
-    <div class="clearfix">
-      <a href="#" class="float-right">Quên mật khẩu?</a>
-    </div>
-  </form>
-  <p class="text-center"><a href="/accounts/signup">Đăng ký tài khoản</a></p>
-</div>
+<html>
+	<body>
+		<div class="container">
+		  <div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+			  <div class="card card-signin my-5">
+				<div class="card-body">
+				  <h5 class="card-title text-center">Đăng nhập</h5>
+				  <form class="form-signin" method="POST">
+					{% csrf_token %}
+					<div class="form-label-group">
+					  <input type="text" name="username" class="form-control" placeholder="Tên tài khoản" autofocus required>
+					  <label for="username">Tên tài khoản</label>
+					  {{ form.username.errors }}
+					</div>
+	  
+					<div class="form-label-group">
+					  <input type="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+					  <label for="password">Mật khẩu</label>
+					  {{ form.password.errors }}
+					</div>
+					  {{ form.non_field_errors  }}
+					<div class="custom-control custom-checkbox mb-3">
+					  <input type="checkbox" class="custom-control-input" id="customCheck1">
+					  <label class="custom-control-label" for="customCheck1">Quên mật khẩu</label>
+					</div>
+					<button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Đăng nhập</button>
+					<hr class="my-4">
+					 {% load socialaccount %}
+					 {% providers_media_js %}
+					  <a href="{% provider_login_url 'google' %}" class="btn btn-lg btn-google btn-block text-uppercase"><i class="fab fa-google mr-2"></i>Đăng nhập với Google</a>
+					  <a href="{% provider_login_url 'facebook' method='js_sdk' %}" class="btn btn-lg btn-facebook btn-block text-uppercase"><i class="fab fa-facebook-f mr-2"></i>Đăng nhập với facebook</a>
+				  </form>		  
+				</div>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	  </body>
+</html>

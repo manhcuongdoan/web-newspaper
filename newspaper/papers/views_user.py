@@ -4,14 +4,16 @@ from .models import Article
 # Create your views here.
 
 def index(request):
-    article_all = Article.objects.order_by('-publish_date')[:5]
+    article_all = Article.objects.order_by('-publish_date')
     context = {'article_all': article_all}
     return render(request, 'user/index.html', context)
     #return HttpResponse(template.render(context, request))
 
 def viewArticle(request, article_id):
+    article_all = Article.objects.order_by('-publish_date')
     article = get_object_or_404(Article, pk=article_id)
-    return render(request, 'user/article_detail.html', {'article': article})
+    context = {'article_all': article_all, 'article_detail': article}
+    return render(request, 'user/article_detail.html', context)
 
 def viewProfile(request):
     user = request.user
